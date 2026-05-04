@@ -1,0 +1,9 @@
+services:
+  app:
+    image: node:22.22.0
+    tty: true
+    ports:
+      - 8009:8009
+    volumes:
+      - .:/app
+    working_dir: /app
