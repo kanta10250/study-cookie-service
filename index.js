@@ -2,8 +2,10 @@
 const http = require('node:http');
 const server = http.createServer((req, res) => {
   const now = Date.now();
+  res.setHeader('Content-Type', 'text/plain;charset=utf8');
   res.setHeader('Set-Cookie', `last_access=${now}`);
-  res.end('hi')
+  const last_access_time = req.headers.cookie ? parseInt(req.headers.cookie.split('last_access=')[1]) : now;
+  res.end(new Date(last_access_time).toLocaleString('ja-JP', {timeZone: 'Asia/Tokyo'}));
 });
 
 const port = 8009;
